@@ -1,10 +1,11 @@
 import React from "react";
+import Icons from "./Icons";
 
-const Button = ({ children, onClick, type }) => {
+const Button = ({ children, onClick, name }) => {
   const baseClass = "px-4 py-2 text-white rounded-md";
   let typeClass = "";
 
-  switch (type) {
+  switch (name) {
     case "login":
       typeClass = "bg-blue-500 hover:bg-blue-700";
       break;

@@ -53,7 +53,7 @@ const LoginForm = () => {
         label="Full Name"
         type="text"
         placeholder="Enter your full name"
-        name="name"
+        name="form"
         value={name}
         onChange={handleChange}
       />
@@ -61,7 +61,7 @@ const LoginForm = () => {
         label="Email"
         type="email"
         placeholder="Enter your email"
-        name="email"
+        name="form"
         value={email}
         onChange={handleChange}
       />
@@ -69,11 +69,13 @@ const LoginForm = () => {
         label="Password"
         type="password"
         placeholder="Enter your password"
-        name="password"
+        name="form"
         value={password}
         onChange={handleChange}
       />
-      <Button type="submit">Register</Button>
+      <Button type="submit" name="register">
+        Register
+      </Button>
       <Texts type="info">Already a member? Sign-In Now</Texts>
     </form>
   );

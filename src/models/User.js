@@ -18,6 +18,18 @@ const UserSchema = new mongoose.Schema({
     type: String,
     default: "",
   },
+  bio: {
+    type: String,
+    default: "",
+  },
+  travelCity: {
+    type: String,
+    default: "",
+  },
+  travelCountry: {
+    type: String,
+    default: "",
+  },
   chats: [
     {
       type: [{ type: mongoose.Schema.Types.ObjectId, ref: "Chat" }],

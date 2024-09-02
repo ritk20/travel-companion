@@ -37,6 +37,7 @@ const LoginForm = () => {
       <FormField
         label="Email"
         type="email"
+        name="form"
         placeholder="Enter your email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
@@ -44,6 +45,7 @@ const LoginForm = () => {
       <FormField
         label="Password"
         type="password"
+        name="form"
         placeholder="Enter your password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}

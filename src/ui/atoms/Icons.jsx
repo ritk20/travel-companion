@@ -3,13 +3,18 @@ import { FaSearch } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
 import { IoMdSettings } from "react-icons/io";
 
-const Icons = ({ type }) => {
+const Icons = ({ name }) => {
   const iconSize = 20;
-  switch (type) {
+  switch (name) {
     case "search":
-      return <FaSearch size={iconSize} />;
+      return (
+        <FaSearch
+          size={iconSize}
+          className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-600"
+        />
+      );
     case "profile":
-      return <CgProfile size={iconSize} className="mx-2" />;
+      return <CgProfile size={iconSize} />;
     case "message":
       return <div>Message</div>;
     case "settings":
