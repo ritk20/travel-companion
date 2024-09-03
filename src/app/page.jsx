@@ -1,5 +1,6 @@
 "use client";
 import Provider from "@/context/Provider";
+import Loader from "@/ui/atoms/Loader";
 import ChatPage from "@/ui/templates/ChatPage";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -17,7 +18,7 @@ export default function Home() {
   }, [status, router]);
 
   if (status === "loading") {
-    return <div>Loading...</div>; // Show a loading state while checking the session
+    return <Loader />; // Show a loading state while checking the session
   }
   console.log(session);
   return (

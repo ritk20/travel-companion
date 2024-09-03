@@ -15,6 +15,8 @@ const SearchFriend = () => {
   useEffect(() => {
     if (query.length >= 2) {
       fetchSuggestions();
+    } else {
+      setSuggestions([]);
     }
   }, [query]);
 

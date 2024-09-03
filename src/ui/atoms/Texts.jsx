@@ -5,6 +5,9 @@ const Texts = ({ type, children }) => {
   let typeClass = "";
 
   switch (type) {
+    case "heading":
+      typeClass = "text-3xl font-bold justify-center flex";
+      break;
     case "label":
       typeClass = "block text-sm font-bold mb-2";
       break;

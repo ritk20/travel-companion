@@ -4,8 +4,9 @@ import LoginTemplate from "@/ui/templates/LoginPage";
 import Provider from "@/context/Provider";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import Loader from "@/ui/atoms/Loader";
 
-const LoginPage = () => {
+export default function LoginPage() {
   const { data: session, status } = useSession();
   const router = useRouter();
 
@@ -17,13 +18,11 @@ const LoginPage = () => {
   }, [status, router]);
 
   if (status === "loading") {
-    return <div>Loading...</div>; // Show a loading state while checking the session
+    return <Loader />; // Show a loading state while checking the session
   }
   return (
     <Provider>
       <LoginTemplate type="login" />
     </Provider>
   );
-};
-
-export default LoginPage;
+}

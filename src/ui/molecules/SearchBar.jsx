@@ -3,7 +3,7 @@ import React from "react";
 import Input from "../atoms/Input";
 import Icons from "../atoms/Icons";
 
-const SearchBar = ({ query, setQuery, onSearch }) => {
+const SearchBar = ({ query, setQuery }) => {
   return (
     <div className="relative flex items-center">
       <Input

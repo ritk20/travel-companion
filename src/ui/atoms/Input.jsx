@@ -1,6 +1,6 @@
 import React from "react";
 
-const Input = ({ type, placeholder, name, value, onChange, id }) => {
+const Input = ({ type, placeholder, value, onChange, onKeyDown }) => {
   const baseClass = "text-black";
   let typeClass = "";
 
@@ -13,6 +13,9 @@ const Input = ({ type, placeholder, name, value, onChange, id }) => {
     case "search":
       typeClass = "bg-gray-100 px-2 pr-10 py-1 rounded-xl w-full";
       break;
+    case "message":
+      typeClass = "flex-grow p-2 border border-gray-300 rounded-l-lg";
+      break;
     default:
       typeClass = "";
   }
@@ -21,10 +24,9 @@ const Input = ({ type, placeholder, name, value, onChange, id }) => {
     <input
       type={type}
       placeholder={placeholder}
-      name={name}
       value={value}
       onChange={onChange}
-      id={id}
+      onKeyDown={onKeyDown}
       className={`${baseClass} ${typeClass}`}
     />
   );

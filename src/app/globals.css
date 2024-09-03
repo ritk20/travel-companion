@@ -2,10 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-  color: white;
+@layer base {
+  body {
+    font-family: __Roboto_a48f64, __Roboto_Fallback_a48f64, system-ui,arial;
+    background: linear-gradient(to top, rgb(165, 221, 241), rgb(98, 198, 232));
+    height: 100%;
+    color: white;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
 }
-

@@ -1,16 +1,24 @@
 // LoginForm.jsx
-import React, { useState } from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import FormField from "../molecules/FormField";
 import Button from "../atoms/Button";
 import Texts from "../atoms/Texts";
 import { useRouter } from "next/navigation";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
+  const { data: session, status } = useSession();
 
+  // Redirect user if they are already logged in
+  // useEffect(() => {
+  //   if (status === "authenticated") {
+  //     router.push("/"); // Redirect to homepage or any other page
+  //   }
+  // }, [status]);
   const handleSubmit = async (e) => {
     e.preventDefault();
 

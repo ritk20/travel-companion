@@ -5,13 +5,13 @@ import MessagePanel from "../organisms/MessagePanel";
 
 const ChatPage = () => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col h-screen">
       <Navbar />
-      <div className="flex w-full">
-        <div className="w-[30%] h-fit max-md:hidden">
+      <div className="flex w-full overflow-hidden h-screen">
+        <div className="w-[30%] max-md:hidden">
           <ChatList />
         </div>
-        <div className="w-[70%] h-fit max-md:w-full">
+        <div className="w-[70%] max-md:w-full">
           <MessagePanel />
         </div>
       </div>
