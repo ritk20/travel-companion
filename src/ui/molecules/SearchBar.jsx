@@ -1,34 +1,21 @@
-"use client";
 // SearchBar.jsx
-import React, { useState } from "react";
+import React from "react";
 import Input from "../atoms/Input";
-import Button from "../atoms/Button";
 import Icons from "../atoms/Icons";
 
-const SearchBar = ({ onSearch }) => {
-  const [searchTerm, setSearchTerm] = useState("");
-
-  const handleChange = (e) => {
-    setSearchTerm(e.target.value);
-  };
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    onSearch(searchTerm);
-  };
-
+const SearchBar = ({ query, setQuery, onSearch }) => {
   return (
-    <form onSubmit={handleSearch} className="relative flex items-center">
+    <div className="relative flex items-center">
       <Input
         type="text"
-        placeholder="Search..."
         name="search"
-        value={searchTerm}
-        onChange={handleChange}
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        placeholder="Search by city or country"
         className="pr-10 w-full"
       />
       <Icons type="submit" name="search" />
-    </form>
+    </div>
   );
 };
 

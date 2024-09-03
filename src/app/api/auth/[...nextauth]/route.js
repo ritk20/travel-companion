@@ -33,6 +33,10 @@ const handler = NextAuth({
     }),
   ],
 
+  session: {
+    jwt: true,
+  },
+
   secret: process.env.NEXTAUTH_SECRET,
 
   callbacks: {
@@ -43,6 +47,13 @@ const handler = NextAuth({
       session.user = { ...session.user, ...mongodbUser._doc };
 
       return session;
+    },
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user._id.toString();
+      }
+
+      return token;
     },
   },
 });

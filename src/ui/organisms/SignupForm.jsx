@@ -1,12 +1,14 @@
-"use client"; // Ensure this component is client-side rendered
+"use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FormField from "../molecules/FormField";
 import Button from "../atoms/Button";
 import Texts from "../atoms/Texts";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
-const LoginForm = () => {
+const SignupForm = () => {
+  const { data: session, status } = useSession();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -15,6 +17,13 @@ const LoginForm = () => {
 
   const { name, email, password } = formData;
   const router = useRouter();
+
+  // Redirect user if they are already logged in
+  useEffect(() => {
+    if (status === "authenticated") {
+      router.push("/"); // Redirect to homepage or any other page
+    }
+  }, [status]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -53,7 +62,7 @@ const LoginForm = () => {
         label="Full Name"
         type="text"
         placeholder="Enter your full name"
-        name="form"
+        name="name"
         value={name}
         onChange={handleChange}
       />
@@ -61,7 +70,7 @@ const LoginForm = () => {
         label="Email"
         type="email"
         placeholder="Enter your email"
-        name="form"
+        name="email"
         value={email}
         onChange={handleChange}
       />
@@ -69,7 +78,7 @@ const LoginForm = () => {
         label="Password"
         type="password"
         placeholder="Enter your password"
-        name="form"
+        name="password"
         value={password}
         onChange={handleChange}
       />
@@ -81,4 +90,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default SignupForm;

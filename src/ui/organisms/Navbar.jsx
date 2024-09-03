@@ -1,15 +1,21 @@
 import React from "react";
 import Logo from "../molecules/Logo";
-import SearchBar from "../molecules/SearchBar";
 import NavButton from "../molecules/NavButton";
+import SearchFriend from "../molecules/SearchFriend";
 
 const Navbar = () => {
   return (
     <div>
-      <div className="flex justify-between items-center bg-gray-800 p-4">
-        <Logo />
-        <SearchBar />
-        <NavButton />
+      <div className="flex justify-between items-center bg-gray-800 p-4 max-[340px]:justify-center">
+        <div className="max-sm:hidden">
+          <Logo />
+        </div>
+        <div className="">
+          <SearchFriend />
+        </div>
+        <div className="max-[340px]:hidden">
+          <NavButton />
+        </div>
       </div>
     </div>
   );

@@ -2,6 +2,7 @@ import React from "react";
 import { FaSearch } from "react-icons/fa";
 import { CgProfile } from "react-icons/cg";
 import { IoMdSettings } from "react-icons/io";
+import { IoIosArrowBack } from "react-icons/io";
 
 const Icons = ({ name }) => {
   const iconSize = 20;
@@ -19,6 +20,8 @@ const Icons = ({ name }) => {
       return <div>Message</div>;
     case "settings":
       return <IoMdSettings size={iconSize} />;
+    case "back":
+      return <IoIosArrowBack size={iconSize} />;
     default:
       return <div>Icons</div>;
   }

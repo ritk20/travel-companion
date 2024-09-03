@@ -20,19 +20,20 @@ const LoginForm = () => {
       redirect: false,
     });
 
+    console.log("SignIn Response:", res); // Log the response for debugging
+
     if (res.ok) {
       router.push("/");
-      console.log("Email:", email);
-      console.log("Password:", password);
     } else {
-      alert("Failed to login");
+      const errorMsg = res.error || "Failed to login";
+      alert(errorMsg); // Provide more information if available
     }
   };
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col justify-center items-center p-10 bg-gradient-to-br from-fuchsia-500 to-pink-500 rounded-md bg-yellow-"
+      className="flex flex-col justify-center items-center p-10 bg-gradient-to-br from-fuchsia-500 to-pink-500 rounded-md"
     >
       <FormField
         label="Email"
@@ -50,10 +51,12 @@ const LoginForm = () => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <Button type="submit">Login</Button>
+      <Button type="submit" role="button" aria-label="Login Button">
+        Login
+      </Button>
 
       <Texts type="info">
-        Not a user?<a>Sign-Up Now</a>
+        Not a user? <a href="/register">Sign-Up Now</a>
       </Texts>
     </form>
   );

@@ -8,10 +8,10 @@ const ChatPage = () => {
     <div className="flex flex-col">
       <Navbar />
       <div className="flex w-full">
-        <div className="w-[30%] h-fit">
+        <div className="w-[30%] h-fit max-md:hidden">
           <ChatList />
         </div>
-        <div className="w-[70%]">
+        <div className="w-[70%] h-fit max-md:w-full">
           <MessagePanel />
         </div>
       </div>
