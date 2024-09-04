@@ -11,7 +11,7 @@ const Input = ({ type, placeholder, value, onChange, onKeyDown }) => {
       typeClass = "bg-gray-100 px-3 py-2 rounded-md w-full";
       break;
     case "search":
-      typeClass = "bg-gray-100 px-2 pr-10 py-1 rounded-xl w-full";
+      typeClass = "bg-gray-100 px-3 pr-10 py-1 rounded-xl w-full";
       break;
     case "message":
       typeClass = "flex-grow p-2 border border-gray-300 rounded-l-lg";

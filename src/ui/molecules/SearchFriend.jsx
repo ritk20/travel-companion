@@ -1,4 +1,3 @@
-// SearchFriend.js
 "use client";
 import React, { useState, useEffect } from "react";
 import SearchBar from "./SearchBar";
@@ -25,7 +24,13 @@ const SearchFriend = () => {
     try {
       const response = await fetch(`/api/users?query=${query}`);
       const data = await response.json();
-      setFriends(data);
+
+      const friends = data.map((user) => ({
+        name: user.name,
+        travelCity: user.travelCity,
+        travelCountry: user.travelCountry,
+      }));
+      setFriends(friends);
     } catch (error) {
       console.error("Failed to load friends", error.message);
     } finally {
@@ -37,23 +42,21 @@ const SearchFriend = () => {
     try {
       const response = await fetch(`/api/users?query=${query}`);
       const data = await response.json();
-      // Extract unique cities and countries from the data for suggestions
-      const citiesAndCountries = [
-        ...new Set(
-          data
-            .map((user) => [user.travelCity, user.travelCountry])
-            .flat()
-            .filter(Boolean)
-        ),
-      ];
-      setSuggestions(citiesAndCountries);
+
+      const suggestions = data.map((user) => ({
+        name: user.name,
+        travelCity: user.travelCity,
+        travelCountry: user.travelCountry,
+      }));
+
+      setSuggestions(suggestions);
     } catch (error) {
       console.error("Failed to load suggestions", error.message);
     }
   };
 
   return (
-    <div>
+    <div className="relative">
       <SearchBar query={query} setQuery={setQuery} onSearch={fetchFriends} />
       {suggestions.length > 0 ? (
         <SuggestionsList

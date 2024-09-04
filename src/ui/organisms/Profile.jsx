@@ -43,7 +43,10 @@ const EditProfile = () => {
   }, [status, session]);
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleSubmit = async (e) => {
@@ -76,19 +79,18 @@ const EditProfile = () => {
   }
 
   if (status === "unauthenticated") {
-    router.push("/auth/login");
+    router.push("/login");
     return null;
   }
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col justify-center items-center p-10 bg-gradient-to-br from-fuchsia-500 to-pink-500 rounded-md"
+      className="flex flex-col justify-center items-center p-10 m-20 mx-60 rounded-lg bg-gradient-to-br from-fuchsia-500 to-pink-500"
     >
       <FormField
         label="Full Name"
         type="text"
-        name="name"
         placeholder="Enter your full name"
         value={formData.name}
         onChange={handleChange}
@@ -96,7 +98,6 @@ const EditProfile = () => {
       <FormField
         label="Bio"
         type="text"
-        name="bio"
         placeholder="Enter your bio"
         value={formData.bio}
         onChange={handleChange}
@@ -104,7 +105,6 @@ const EditProfile = () => {
       <FormField
         label="Profile Image URL"
         type="text"
-        name="profileImage"
         placeholder="Enter image URL"
         value={formData.profileImage}
         onChange={handleChange}

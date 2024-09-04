@@ -2,6 +2,7 @@ import React from "react";
 import Logo from "../molecules/Logo";
 import NavButton from "../molecules/NavButton";
 import SearchFriend from "../molecules/SearchFriend";
+import SearchBar from "../molecules/SearchBar";
 
 const Navbar = () => {
   return (
@@ -11,7 +12,7 @@ const Navbar = () => {
           <Logo />
         </div>
         <div className="">
-          <SearchFriend />
+          <SearchBar />
         </div>
         <div className="max-[340px]:hidden">
           <NavButton />

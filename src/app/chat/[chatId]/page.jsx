@@ -1,7 +1,6 @@
 "use client";
 import Provider from "@/context/Provider";
 import Loader from "@/ui/atoms/Loader";
-import GroupChat from "@/ui/organisms/GroupChat";
 import ChatPage from "@/ui/templates/ChatPage";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -24,7 +23,7 @@ export default function Home() {
   console.log(session);
   return (
     <Provider>
-      <ChatPage type="dashboard" />
+      <ChatPage type="chats" />
 
       {/* <GroupChat /> */}
     </Provider>
