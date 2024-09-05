@@ -14,11 +14,12 @@ const LoginForm = () => {
   const { data: session, status } = useSession();
 
   // Redirect user if they are already logged in
-  // useEffect(() => {
-  //   if (status === "authenticated") {
-  //     router.push("/"); // Redirect to homepage or any other page
-  //   }
-  // }, [status]);
+  useEffect(() => {
+    if (status === "authenticated") {
+      router.push("/"); // Redirect to homepage or any other page
+    }
+  }, [status, router]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 

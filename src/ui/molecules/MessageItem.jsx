@@ -1,13 +1,17 @@
-import React from "react";
-
-const MessageItem = ({ messages }) => {
+const MessageItem = ({ message, sender, timestamp, isOwnMessage }) => {
   return (
-    <div className="flex-1 bg-white shadow-md rounded-lg p-4 overflow-y-auto mt-4">
-      {messages.map((message, index) => (
-        <div key={index} className="bg-gray-100 p-2 my-2 rounded-lg">
-          {message}
-        </div>
-      ))}
+    <div className={`flex ${isOwnMessage ? "justify-end" : "justify-start"}`}>
+      <div
+        className={`p-2 rounded-lg ${
+          isOwnMessage ? "bg-blue-500 text-white" : "bg-gray-300 text-black"
+        }`}
+      >
+        <p className="font-bold">{isOwnMessage ? "You" : sender.name}</p>
+        <p>{message}</p>
+        <span className="text-xs text-gray-500">
+          {new Date(timestamp).toLocaleTimeString()}
+        </span>
+      </div>
     </div>
   );
 };

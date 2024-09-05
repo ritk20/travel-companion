@@ -5,6 +5,10 @@ This is a chat application where you can easily search for and find other people
 ## Features
 
 - User Authorization & SignUp
+- Update User Info
+- Search Users
+- Create Chats (individual and group)
+- Send Messages
 
 ## How To Use?
 
@@ -24,7 +28,14 @@ This is a chat application where you can easily search for and find other people
 - NextJS
 - Tailwind CSS
 - MongoDB
-- SocketIO (_not added yet_)
+- SocketIO
+
+## About Me
+
+Name: Ritobroto Kalita
+Email: ritobroto.kalita@gmail.com
+University: IIT Kharagpur
+Department: Mechanical Engineering
 
 ## Contributions
 

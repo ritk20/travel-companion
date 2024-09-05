@@ -17,6 +17,9 @@ const EditProfile = () => {
     travelCity: "",
     travelCountry: "",
   });
+
+  const [travelCity, setTravelCity] = useState("");
+  const [travelCountry, setTravelCountry] = useState("");
   const router = useRouter();
 
   useEffect(() => {
@@ -24,15 +27,16 @@ const EditProfile = () => {
       // Fetch user data from API
       const fetchUserData = async () => {
         try {
-          const res = await fetch(`/api/users/${session.user.email}`);
+          const res = await fetch(`/api/users/${session.user.email}/update`);
           const data = await res.json();
           setFormData({
             name: data.name,
             bio: data.bio,
-            profileImage: data.profileImage,
             travelCity: data.travelCity,
             travelCountry: data.travelCountry,
           });
+          setTravelCity(data.travelCity);
+          setTravelCountry(data.travelCountry);
         } catch (error) {
           console.error("Failed to fetch user data:", error);
         }
@@ -49,11 +53,19 @@ const EditProfile = () => {
     });
   };
 
+  useEffect(() => {
+    setFormData({
+      ...formData,
+      travelCity,
+      travelCountry,
+    });
+  }, [travelCity, travelCountry]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const res = await fetch(`/api/users/${session.user.email}`, {
+      const res = await fetch(`/api/users/${session.user.email}/update`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -103,27 +115,20 @@ const EditProfile = () => {
         onChange={handleChange}
       />
       <FormField
-        label="Profile Image URL"
-        type="text"
-        placeholder="Enter image URL"
-        value={formData.profileImage}
-        onChange={handleChange}
-      />
-      <FormField
         label="Travel City"
         type="text"
         name="travelCity"
         placeholder="Enter your travel city"
-        value={formData.travelCity}
-        onChange={handleChange}
+        value={travelCity}
+        onChange={(e) => setTravelCity(e.target.value)}
       />
       <FormField
         label="Travel Country"
         type="text"
         name="travelCountry"
         placeholder="Enter your travel country"
-        value={formData.travelCountry}
-        onChange={handleChange}
+        value={travelCountry}
+        onChange={(e) => setTravelCountry(e.target.value)}
       />
       <Button type="submit">Update Profile</Button>
     </form>

@@ -10,12 +10,12 @@ export default function Home() {
   const { data: session, status } = useSession();
   const router = useRouter();
 
-  // useEffect(() => {
-  //   if (status === "unauthenticated") {
-  //     // Redirect to the homepage or any other page if the user is logged in
-  //     router.push("/login");
-  //   }
-  // }, [status, router]);
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      // Redirect to the login page if the user is not authenticated
+      router.push("/login");
+    }
+  }, [status, router]);
 
   if (status === "loading") {
     return <Loader />; // Show a loading state while checking the session

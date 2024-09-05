@@ -1,51 +1,26 @@
-import { connectToDB } from "@/mongodb";
+import Chat from "@/models/Chat";
 import User from "@/models/User";
+import { connectToDB } from "@/mongodb";
 
-// Handle GET request to fetch a user by email
-export async function GET(request, { params }) {
-  const { email } = params;
-
+export const GET = async (req, { params }) => {
   try {
     await connectToDB();
-    const user = await User.findOne({ email }).exec();
 
-    if (!user) {
-      return new Response(JSON.stringify({ message: "User not found" }), {
-        status: 404,
-      });
-    }
+    const { userId } = params;
 
-    return new Response(JSON.stringify(user), { status: 200 });
-  } catch (error) {
-    return new Response(JSON.stringify({ message: "Failed to fetch user" }), {
+    const allChats = await Chat.find({ members: userId })
+      .sort({ lastMessageAt: -1 })
+      .populate({
+        path: "members",
+        model: User,
+      })
+      .exec();
+
+    return new Response(JSON.stringify(allChats), { status: 200 });
+  } catch (err) {
+    console.log(err);
+    return new Response("Failed to get all chats of current user", {
       status: 500,
     });
   }
-}
-
-export async function PUT(request, { params }) {
-  const { email } = params;
-  const body = await request.json();
-
-  try {
-    await connectToDB();
-    const user = await User.findOneAndUpdate(
-      { email }, // Find the user by email
-      { $set: body }, // Update the fields provided in the body
-      { new: true, runValidators: true } // Options: return the updated document, and run validators
-    ).exec();
-
-    if (!user) {
-      return new Response(JSON.stringify({ message: "User not found" }), {
-        status: 404,
-      });
-    }
-
-    return new Response(JSON.stringify(user), { status: 200 });
-  } catch (error) {
-    console.error("Error updating user:", error);
-    return new Response(JSON.stringify({ message: "Failed to update user" }), {
-      status: 500,
-    });
-  }
-}
+};

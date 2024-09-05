@@ -23,7 +23,7 @@ const SignupForm = () => {
     if (status === "authenticated") {
       router.push("/"); // Redirect to homepage or any other page
     }
-  }, [status]);
+  }, [status, router]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
